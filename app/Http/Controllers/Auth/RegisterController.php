@@ -53,8 +53,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'birthdate' => ['required', 'date'],
-            'avatar' => ['nullable', 'image'],
+            'birthdate' => ['nullable', 'date'],
+            'avatar' => ['nullable', 'image'], // Max file size in kilobytes (2MB in this example)
+            'aboutme' => 'nullable','string|max:255', // Add validation for aboutme field
+            'address' => ['nullable', 'string', 'max:255'],
+
         ]);
     }
 
@@ -66,14 +69,31 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $avatarPath = null;
+
+        if ($data['avatar']->isValid()) {
+            // Move the uploaded file to the desired location
+            $data['avatar']->move(public_path('avatars'), $data['avatar']->getClientOriginalName());
+        
+            // Set the avatar path to the filename
+            $avatarPath = $data['avatar']->getClientOriginalName();
+        }
+        
+        // Create a new user
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'birthdate' => $data['birthdate'],
-            'avatar' => $data['avatar'], 
+            'aboutme' => $data['aboutme'], // Add 'aboutme' field
+            'address' => $data['address'],
+            'avatar' => $avatarPath, // Store the avatar filename
         ]);
+        
+        return $user;
     }
-
+    
     
 }
+
+

@@ -50,7 +50,7 @@ class PostController extends Controller
     public function edit($id){
         $post= Post::findOrFail($id);
         if($post->user_id != Auth::user()->id){
-            aboort(403);
+            abort(403);
         }
         return view('posts.edit',compact('post'));
     }

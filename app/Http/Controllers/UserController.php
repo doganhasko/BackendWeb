@@ -31,10 +31,10 @@ class UserController extends Controller
     
         $request->validate([
             'name' => 'required|string|max:255',
-            'birthdate' => 'required|date',
-            'aboutme' => 'required|string|max:255', // Add validation for aboutme field
-            'address' => 'required|string|max:255', // Add validation for address field
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for image file
+            'birthdate' => 'nullable','date',
+            'aboutme' => 'nullable','string|max:255', // Add validation for aboutme field
+            'address' => 'nullable','string|max:255', // Add validation for address field
+            'avatar' => 'nullable','image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for image file
         ]);
     
         $data = [
@@ -42,6 +42,8 @@ class UserController extends Controller
             'birthdate' => $request->input('birthdate'),
             'aboutme' => $request->input('aboutme'),
             'address' => $request->input('address'),
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for image file
+
         ];
     
         // Check if the avatar file was provided

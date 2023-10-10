@@ -9,6 +9,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 
 
 
@@ -29,6 +30,8 @@ Route::resource('posts', PostController::class);
 Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
 Route::get('user/{name}', [UserController::class, 'profile'])->name('profile');
 
+//Route::get('/register', [RegisterController::class, 'register'])->name('register');
+Route::post('/register', [RegisterController::class, 'create'])->name('register.create');
 
 Auth::routes();
 
