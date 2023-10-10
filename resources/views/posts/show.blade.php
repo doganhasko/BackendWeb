@@ -24,8 +24,33 @@
                     @endif
                     <br>
                     @endauth
-                    {{$post->likes()->count()}} people found this review helpful.
+                    {{$post->likes()->count()}} people found this review helpful. <hr>
                     
+                    <br><br><br><h4>Comments</h4>
+                    @if ($post->comments)
+
+                        <!-- Display comments -->
+                        @foreach ($post->comments as $comment)
+                        <div class="comment">
+                            <strong>{{ $comment->user->name }}</strong>
+                            <p>{{ $comment->body }}</p>
+                        </div>
+                        @endforeach
+                    @endif
+                    <!-- Add comment form -->
+                    @auth
+                    <form method="post" action="{{ route('comments.store', $post->id) }}">
+                        @csrf
+                        
+                        <div class="form-group">
+                            <textarea name="body" class="form-control" placeholder="Add a comment"></textarea>
+                        </div>
+                        <div class="form-group"><br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                    @endauth
+                    <br><br>
 
                     @auth
                         @if(Auth::user()->is_admin)

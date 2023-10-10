@@ -7,6 +7,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\CommentsController;
+use App\Http\Controllers\Auth\LoginController;
+
 
 
 /*
@@ -31,6 +34,8 @@ Auth::routes();
 
 
 Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
+//Route::get('/admin', [LoginController::class, 'admin'])->name('admin.home')->middleware('is_admin');
+
 
 Route::get('/about', function () {
     return view('about');
@@ -56,3 +61,19 @@ Route::post('/contact', [ContactController::class,'storeContactForm'])->name('co
 // Profile Editing Routes
 Route::get('user/{name}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('user/{name}/update', [UserController::class, 'update'])->name('users.update');
+
+
+Route::post('/posts/{post}/comments', [CommentsController::class, 'store'])->name('comments.store');
+
+// // Regular user routes
+// Route::group(['middleware' => ['web', 'auth:web']], function () {
+//     // Define regular user routes here
+//     // For example, you can define routes like '/user-dashboard', '/profile', etc.
+//     Route::get('/', [PostController::class, 'index'])->name('home');
+// });
+
+// // Admin routes
+// Route::group(['middleware' => ['web', 'auth:admin']], function () {
+//     // Define admin routes here
+//     // For example, you can define routes like '/admin-dashboard', '/admin/settings', etc.
+//     Route::get('/admin', [LoginController::class, 'admin'])->name('admin.home')->middleware('is_admin');});

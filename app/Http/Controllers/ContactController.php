@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Notifications\ContactFormSubmitted;
 use Illuminate\Support\Facades\Notification;
 use Mail;
+use App\Models\Contact; 
 use App\Mail\DemoMail;
 
 
@@ -26,7 +27,13 @@ public function storeContactForm(Request $request)
         'subject' => 'required',
         'message' => 'required',
     ]);
-
+    
+    $contact = new Contact();
+    $contact->name = $request->input('name');
+    $contact->email = $request->input('email');
+    $contact->subject = $request->input('subject');
+    $contact->message = $request->input('message');
+    $contact->save();
     // Send email to administrators
     // You can use Laravel's built-in email functionality here
     // Send email to administrators

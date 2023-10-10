@@ -22,21 +22,19 @@ use AuthenticatesUsers;
 
     public function login(Request $request)
     {
-      $this->validateLogin($request);
-  
-      if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-        
-        // Store email and hashed password in session
-        $request->session()->put([
-            'email' => $request->email,
-            'password' => bcrypt($request->password) 
-        ]);
-  
-        return $this->sendLoginResponse($request);
-  
-      }
-  
-      return $this->sendFailedLoginResponse($request);
+      
+        $credentials = $request->only('email', 'password');
+    
+        if (Auth::guard('web')->attempt($credentials)) {
+            // Regular user login successful
+            return redirect()->intended('/home');
+        } elseif (Auth::guard('admin')->attempt($credentials)) {
+            // Admin user login successful
+            return redirect()->intended('/admin');
+        }
+    
+        // Login failed for both regular and admin users
+        return back()->withErrors(['email' => 'Invalid credentials']);
     }
   
     public function logout(Request $request)
@@ -46,6 +44,8 @@ use AuthenticatesUsers;
   
       Auth::logout();
   
-      return redirect('/login');
+      return redirect('/');
     }
+
+ 
 }

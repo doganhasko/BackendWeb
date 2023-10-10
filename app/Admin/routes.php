@@ -14,7 +14,12 @@ Route::group([
     $router->get('/', 'HomeController@index')->name('home');
 
     $router->resource('faqs', FaqController::class);
+    $router->resource('contacts', ContactController::class);
+    $router->resource('users', UserController::class);
+
 
 
 
 });
+
+
