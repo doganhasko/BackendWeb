@@ -64,6 +64,14 @@
                                 @endif
                             </div>
                         </div>
+                        
+                        <div class="row mb-0">
+                            <div class="col-md-8 offset-md-4">    
+                               <br> <a class="btn btn-secondary"  href="{{ url('/admin/auth/login') }}" style="background-color: lightgreen; color: black;">
+                                {{ __('Click me to Login as Admin') }}  </a>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

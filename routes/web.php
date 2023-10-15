@@ -52,6 +52,9 @@ Route::get('/store', function () {
 Route::get('/faq', function () {
     return view('faq');
 });
+// Route::get('/admin/auth/login', function () {
+//     return view('admin');
+// });
 
 
 Route::get('/faq', 'FaqController@index');
@@ -67,6 +70,10 @@ Route::put('user/{name}/update', [UserController::class, 'update'])->name('users
 
 
 Route::post('/posts/{post}/comments', [CommentsController::class, 'store'])->name('comments.store');
+
+
+
+
 
 // // Regular user routes
 // Route::group(['middleware' => ['web', 'auth:web']], function () {

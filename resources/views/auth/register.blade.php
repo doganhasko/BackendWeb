@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="birthdate" class="col-md-4 col-form-label text-md-right">{{ __('Birthdate') }}</label>
+                            <label for="birthdate" class="col-md-4 col-form-label text-md-end">{{ __('Birthdate') }}</label>
                             <div class="col-md-6">
                                 <input id="birthdate" type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate" value="{{ old('birthdate') }}" required>
                                 @error('birthdate')
@@ -71,31 +71,8 @@
                                 @enderror
                             </div>
                         </div>
-                    
-                        <div class="form-group row">
-                            <label for="avatar" class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
-                            <div class="col-md-6">
-                                <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar">
-                                @error('avatar')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="aboutme" class="col-md-4 col-form-label text-md-right">{{ __('About Me') }}</label>
-                            <div class="col-md-6">
-                                <textarea id="aboutme" class="form-control @error('aboutme') is-invalid @enderror" name="aboutme" rows="4">{{ old('aboutme') }}</textarea>
-                                @error('aboutme')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                        <div class="row mb-3">
+                            <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
                                 @error('address')
@@ -105,7 +82,31 @@
                                 @enderror
                             </div>
                         </div>
-                        
+                    
+
+                        <div class="row mb-3">
+                            <label for="aboutme" class="col-md-4 col-form-label text-md-end">{{ __('About Me') }}</label>
+                            <div class="col-md-6">
+                                <textarea id="aboutme" class="form-control @error('aboutme') is-invalid @enderror" name="aboutme" rows="4">{{ old('aboutme') }}</textarea>
+                                @error('aboutme')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="avatar" class="col-md-4 col-form-label text-md-end">{{ __('Avatar') }}</label>
+                            <div class="col-md-6">
+                                <input id="avatar" type="file" class="form-control @error('avatar') is-invalid @enderror" name="avatar">
+                                @error('avatar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                         
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

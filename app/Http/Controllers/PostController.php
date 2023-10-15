@@ -33,23 +33,29 @@ class PostController extends Controller
 
     public function store(Request $request){
         $validated = $request->validate([
-            'title'=>'required|min:1',
-            'content'=>'required|min:1',
+            'title' => 'required|min:1',
+            'content' => 'required|min:1',
+            'image' => 'nullable','image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed image formats and file size as needed.
         ]);
-        
-        $post= new Post;
-        $post->title=$validated['title'];
-        $post->message=$validated['content'];
-        $post->user_id=Auth::user()->id;
+    
+        $post = new Post;
+        $post->title = $validated['title'];
+        $post->message = $validated['content'];
+        $post->user_id = Auth::user()->id;
+    
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $post->postphoto = $imagePath;
+        }
+    
         $post->save();
-
-        return redirect()->route('index')->with('status','Your experience is successfully added, thank you for your feedback.');
-
+    
+        return redirect()->route('index')->with('status', 'Your experience is successfully added, thank you for your feedback.');
     }
 
     public function edit($id){
         $post= Post::findOrFail($id);
-        if($post->user_id != Auth::user()->id){
+        if($post->user_id != Auth::user()->id && !Auth::user()->is_admin){
             abort(403);
         }
         return view('posts.edit',compact('post'));

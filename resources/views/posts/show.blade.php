@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<body style="background-image: url('{{ asset('storage/' . $post->postphoto) }}'); background-size: cover; background-position: center;">
 
 @section('content')
 <div class="container">
@@ -17,7 +18,7 @@
                     <br><br>
 
                     @auth
-                        @if($post->user_id==Auth::user()->id)
+                        @if($post->user_id==Auth::user()->id|| Auth::user()->is_admin)
                         <a href="{{route('posts.edit',$post->id)}}"> Edit your experience</a>
                     @else
                     <a href="{{route('like',$post->id)}}">Like</a>
@@ -53,7 +54,7 @@
                     <br><br>
 
                     @auth
-                        @if(Auth::user()->is_admin)
+                        @if(Auth::user()->is_admin|| $post->user_id == Auth::user()->id)
                         <br><br>
                             <form action="{{route('posts.destroy', $post->id)}}" method="post">
                                 @csrf
@@ -68,4 +69,7 @@
         </div>
     </div>
 </div>
+
+    
+</body>
 @endsection
