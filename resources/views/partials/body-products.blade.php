@@ -1,5 +1,3 @@
-
-<!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
     <div class="container">
         <a class="navbar-brand text-uppercase fw-bold d-lg-none" href="index.html">Start Bootstrap</a>
@@ -10,6 +8,8 @@
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about">About</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products">Products</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store">Store</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="faq">Frequently Asked Questions</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contact">Contact to Admin</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="login">Login</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/register">Register</a></li>
             </ul>

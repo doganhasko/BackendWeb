@@ -8,6 +8,8 @@
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about">About</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products">Products</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store">Store</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="faq">Frequently Asked Questions</a></li>
+                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contact">Contact to Admin</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="login">Login</a></li>
                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/register">Register</a></li>
             </ul>
@@ -25,7 +27,7 @@
                             <span class="section-heading-upper">Strong Coffee, Strong Roots</span>
                             <span class="section-heading-lower">About Our Cafe</span>
                         </h2>
-                        <p>The Backend of this assignment is prepared by mostly using the class material of <strong> Kevin Felix</strong>. <br> Only some frontend layouts used from https://startbootstrap.com/ and for admin panel https://open-admin.org/docs. <br> Also when I got stuck ofcourse I asked help of ChatGpt and Claude. But they were not that helpful.
+                        <p>The Backend of this assignment is prepared by mostly using the class material of <strong> Kevin Felix</strong>. <br> Only some frontend layouts used from https://startbootstrap.com/ and for admin panel https://open-admin.org/docs. I have 2 different table for Admins and Users. This is why you have to Login from admins login page, from users login page you cannot login as admin. But I also used is_admin column in my users table. OpenAdmin gives you chance to edit your database in their dashboard. <br> Also when I got stuck ofcourse I asked help of ChatGpt and Claude. But they were not that helpful.
                         <br>Obviously I didn't just use bootstrap of startbootstrap.com , I modified them as I wished.</p>
                         
 
