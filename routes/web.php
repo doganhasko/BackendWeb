@@ -24,22 +24,17 @@ use App\Http\Controllers\Auth\RegisterController;
 |
 */
 
+// Post Routes
 Route::get('/', [PostController::class, 'index'])->name('index');
 Route::resource('posts', PostController::class);
 
+// Likes Routes
 Route::get('like/{postid}', [LikeController::class, 'like'])->name('like');
 Route::get('user/{name}', [UserController::class, 'profile'])->name('profile');
 
-//Route::get('/register', [RegisterController::class, 'register'])->name('register');
+// Page Routes
 Route::post('/register', [RegisterController::class, 'create'])->name('register.create');
-
-Auth::routes();
-
-
 Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
-//Route::get('/admin', [LoginController::class, 'admin'])->name('admin.home')->middleware('is_admin');
-
-
 Route::get('/about', function () {
     return view('about');
 });
@@ -52,14 +47,12 @@ Route::get('/store', function () {
 Route::get('/faq', function () {
     return view('faq');
 });
-// Route::get('/admin/auth/login', function () {
-//     return view('admin');
-// });
 
-
+// FAQ Routes
 Route::get('/faq', 'FaqController@index');
 Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
 
+// ContactForm Routes
 Route::get('/contact', [ContactController::class,'showContactForm'])->name('contact.show');
 Route::post('/contact', [ContactController::class,'storeContactForm'])->name('contact.store');
 
@@ -68,22 +61,8 @@ Route::post('/contact', [ContactController::class,'storeContactForm'])->name('co
 Route::get('user/{name}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('user/{name}/update', [UserController::class, 'update'])->name('users.update');
 
-
+// Comments Routes
 Route::post('/posts/{post}/comments', [CommentsController::class, 'store'])->name('comments.store');
 
 
-
-
-
-// // Regular user routes
-// Route::group(['middleware' => ['web', 'auth:web']], function () {
-//     // Define regular user routes here
-//     // For example, you can define routes like '/user-dashboard', '/profile', etc.
-//     Route::get('/', [PostController::class, 'index'])->name('home');
-// });
-
-// // Admin routes
-// Route::group(['middleware' => ['web', 'auth:admin']], function () {
-//     // Define admin routes here
-//     // For example, you can define routes like '/admin-dashboard', '/admin/settings', etc.
-//     Route::get('/admin', [LoginController::class, 'admin'])->name('admin.home')->middleware('is_admin');});
+Auth::routes();

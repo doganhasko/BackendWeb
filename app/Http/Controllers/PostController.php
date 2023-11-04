@@ -35,7 +35,7 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required|min:1',
             'content' => 'required|min:1',
-            'image' => 'nullable','image|mimes:jpeg,png,jpg,gif|max:2048', // Adjust the allowed image formats and file size as needed.
+            'image' => 'nullable','image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
     
         $post = new Post;

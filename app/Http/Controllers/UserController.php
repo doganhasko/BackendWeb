@@ -32,9 +32,9 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'birthdate' => 'nullable','date',
-            'aboutme' => 'nullable','string|max:255', // Add validation for aboutme field
-            'address' => 'nullable','string|max:255', // Add validation for address field
-            'avatar' => 'nullable','image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for image file
+            'aboutme' => 'nullable','string|max:255', 
+            'address' => 'nullable','string|max:255', 
+            'avatar' => 'nullable','image|mimes:jpeg,png,jpg,gif|max:2048', 
         ]);
     
         $data = [
@@ -42,7 +42,7 @@ class UserController extends Controller
             'birthdate' => $request->input('birthdate'),
             'aboutme' => $request->input('aboutme'),
             'address' => $request->input('address'),
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Add validation for image file
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif|max:2048', 
 
         ];
     
