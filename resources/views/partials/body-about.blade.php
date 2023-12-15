@@ -80,11 +80,12 @@
                 <div class="col-xl-9 col-lg-10 mx-auto">
                     <div class="bg-faded rounded p-5">
                         <h2 class="section-heading mb-4">
-                            <span class="section-heading-upper">Strong Coffee, Strong Roots</span>
-                            <span class="section-heading-lower">About Our Cafe</span>
+                            <span class="section-heading-upper">PROJECT EXPLANATION</span>
+                            <span class="section-heading-lower">About PROJECT</span>
                         </h2>
-                        <p>Git Link= https://github.com/doganhasko/BackendWeb<br>The Backend of this assignment is prepared by mostly using the class material of <strong> Kevin Felix</strong>. <br> Some frontend layouts used from https://startbootstrap.com/ and for admin panel https://open-admin.org/docs. I have 2 different table for Admins and Users. This is why you have to Login from admins login page, from users login page you cannot login as admin. But I also used is_admin column in my users table. OpenAdmin gives you chance to edit your database in their dashboard. <br> Also when I got stuck ofcourse I asked help of ChatGpt and Claude. But they were not that helpful.
-                        <br>Obviously I didn't just use bootstrap of startbootstrap.com , I modified them as I wished.</p>
+                        <p>Git Link= https://github.com/doganhasko/BackendWeb<br>The Backend of this assignment is prepared by mostly using the class material of <strong> Kevin Felix</strong>. <br> Some frontend layouts used from https://startbootstrap.com/ . I have created admins with is_admin variable in the users table. But I also used separately an admin panel and configured it like i wanted= https://open-admin.org/docs. OpenAdmin has apart table for it's admins. So I have 2 different table for OpenAdmin and Users(including is_admin variable). To go to OpenAdmin's Login panel; there is a button in User Login page. OpenAdmin login page did not offer chance to edit it and integrate with my User Login page, this is why I built it like this. OpenAdmin gives you chance to edit your database in their dashboard. <br> Also when I got stuck ofcourse I asked help of ChatGpt and Claude. But they were not that helpful.
+                        <br>Obviously I didn't just use the bootstrap, I modified them as I wished. <br><strong>Sources= <br>https://startbootstrap.com/ <br>https://open-admin.org/ <br> EHB BackendWeb Courses <br>https://www.youtube.com/watch?v=MYyJ4PuL4pY&ab_channel=TraversyMedia <br>https://www.youtube.com/watch?v=2bz5eleBj98&ab_channel=LaravelDaily </strong>
+                        <br><br>I put a lot of time and effort into this project, thats why I learned a lot too.</p>
                         
 
                     </div>

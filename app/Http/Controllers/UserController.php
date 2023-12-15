@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth; // Add this line
+use Illuminate\Support\Facades\Hash; // Add this line
 class UserController extends Controller
 {
     public function profile ($name){
@@ -64,9 +65,24 @@ class UserController extends Controller
         return redirect()->route('index')->with('success', 'Profile updated successfully.');
     }
     
+    //CHABGE PASSWORD
+    public function showChangePasswordForm()
+    {
+        return view('change-password');
+    }
     
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|confirmed|min:5',
+        ]);
     
+        $user = Auth::user();
+        $user->password = Hash::make($request->password);
+        $user->save();
     
+        return redirect()->route('home')->with('success', 'Password changed successfully!');
+    }
     
 
 

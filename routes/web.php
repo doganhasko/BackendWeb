@@ -24,7 +24,7 @@ use App\Http\Controllers\EdotAdminsController;
 |
 */
 
-// Post Routes
+
 Route::get('/', [PostController::class, 'index'])->name('index');
 Route::resource('posts', PostController::class);
 
@@ -54,10 +54,16 @@ Route::get('/adminpage', function () {
     return view('adminpage');
 })->name('adminpage');
 
+//Change Password
+Route::get('/change-password', [UserController::class, 'showChangePasswordForm'])->name('change.password.form');
+Route::post('/change-password', [UserController::class, 'changePassword'])->name('change.password');
+
 // FAQ Routes
 Route::get('/faq', 'FaqController@index');
 Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
 Route::post('/faq/update-faqs', [FaqController::class, 'updateFAQs'])->name('faq.update-faqs');
+Route::post('/faq/store-new-faq', [FaqController::class, 'storeNewFAQ'])->name('faq.store-new-faq');
+Route::delete('faqs/{faq}', [FaqController::class, 'destroy'])->name('faqs.destroy');
 
 // ContactForm Routes
 Route::get('/contact', [ContactController::class,'showContactForm'])->name('contact.show');

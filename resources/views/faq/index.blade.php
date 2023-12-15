@@ -21,8 +21,9 @@
                         </div>
                     @endif
 
-                    // Filter form
-                    <form action="{{ route('faq.index') }}" method="GET">
+                    
+                    {{-- FILTER FUNCTION --}}
+                    <form action="{{ route('faq.index') }}" method="GET"style=" background-color: lightblue; padding: 10px;>
                     
                       @csrf
                       
@@ -40,8 +41,27 @@
                     
                     </form>
 
+                    {{-- Add New FAQ section --}}
+                    <div id="addNewFAQ">
+                        <h3>Add New FAQ</h3>
+                        <form id="newFAQForm">
+                            @csrf
+                            <label for="newQuestion">Question:</label>
+                            <input type="text" name="newQuestion" id="newQuestion" required> <br><br>
+
+                            <label for="newAnswer">Answer:</label>
+                            <input name="newAnswer" id="newAnswer" required> <br> <br>
+
+                            <label for="newCategory">Category:</label>
+                            <input type="text" name="newCategory" id="newCategory" required>
+
+                            <button type="button" onclick="addNewFAQ()">Add</button>
+                        </form>
+                    </div>
+
                     {{-- Dropdown for selecting a category --}}
-                    <form action="{{ route('faq.update-faqs') }}" method="POST" style="background-color: lightblue; padding: 10px;">
+                    <form action="{{ route('faq.update-faqs') }}" method="POST">
+                        <br><h3>EDIT FAQs</h3>
                         @csrf
 
                         <ul>
@@ -74,7 +94,15 @@
                                         </i>
                                     </p>
                                     <input type="hidden" name="faq_ids[]" value="{{ $faq->id }}">
-                                    <hr>
+                                    @if (auth()->check() && auth()->user()->is_admin)
+                                    <!-- DELETE THIS FAQ button -->
+                                    <form action="{{ route('faqs.destroy', $faq->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">DELETE THIS FAQ</button>
+                                    </form><br>
+                                    <br><hr>
+                                    @endif
                                 </li>
                             @empty
                                 <li>No FAQs found.</li>
@@ -96,3 +124,33 @@
 @endsection
 
 @include('partials.footer-products')
+
+<script>
+    function addNewFAQ() {
+        // Get values from the form
+        var newQuestion = document.getElementById('newQuestion').value;
+        var newAnswer = document.getElementById('newAnswer').value;
+        var newCategory = document.getElementById('newCategory').value;
+
+        // Perform any client-side validation if needed
+
+        // Send AJAX request to store the new FAQ
+        axios.post('{{ route('faq.store-new-faq') }}', {
+            _token: '{{ csrf_token() }}',
+            newQuestion: newQuestion,
+            newAnswer: newAnswer,
+            newCategory: newCategory
+        })
+        .then(response => {
+ 
+
+            // Clear the form
+            document.getElementById('newQuestion').value = '';
+            document.getElementById('newAnswer').value = '';
+            document.getElementById('newCategory').value = '';
+        })
+        .catch(error => {
+            console.error('Error adding new FAQ: ', error);
+        });
+    }
+</script>
