@@ -43,25 +43,30 @@
 
                     {{-- Add New FAQ section --}}
                     <div id="addNewFAQ">
-                        <h3>Add New FAQ</h3>
+                        
                         <form id="newFAQForm">
                             @csrf
-                            <label for="newQuestion">Question:</label>
-                            <input type="text" name="newQuestion" id="newQuestion" required> <br><br>
+                            @if (auth()->check() && auth()->user()->is_admin)
+                            <h3>Add New FAQ</h3>
+                                <label for="newQuestion">Question:</label>
+                                <input type="text" name="newQuestion" id="newQuestion" required> <br><br>
 
-                            <label for="newAnswer">Answer:</label>
-                            <input name="newAnswer" id="newAnswer" required> <br> <br>
+                                <label for="newAnswer">Answer:</label>
+                                <input name="newAnswer" id="newAnswer" required> <br> <br>
 
-                            <label for="newCategory">Category:</label>
-                            <input type="text" name="newCategory" id="newCategory" required>
+                                <label for="newCategory">Category:</label>
+                                <input type="text" name="newCategory" id="newCategory" required>
 
-                            <button type="button" onclick="addNewFAQ()">Add</button>
+                                <button type="button" onclick="addNewFAQ()">Add</button>
+                            @endif    
                         </form>
                     </div>
 
                     {{-- Dropdown for selecting a category --}}
                     <form action="{{ route('faq.update-faqs') }}" method="POST">
+                        @if (auth()->check() && auth()->user()->is_admin)
                         <br><h3>EDIT FAQs</h3>
+                        @endif
                         @csrf
 
                         <ul>
@@ -72,7 +77,7 @@
                                         @if (auth()->check() && auth()->user()->is_admin)
                                             <input type="text" name="updatedFAQs[{{ $faq->id }}][question]" value="{{ $faq->question }}" id="question_{{ $faq->id }}">
                                         @else
-                                            {{ $faq->question }}
+                                           <label for="">Question Title= </label> {{ $faq->question }}
                                         @endif
                                     </h3>
                                     <p>
@@ -80,7 +85,7 @@
                                         @if (auth()->check() && auth()->user()->is_admin)
                                             <textarea name="updatedFAQs[{{ $faq->id }}][answer]" id="answer_{{ $faq->id }}">{{ $faq->answer }}</textarea>
                                         @else
-                                            {{ $faq->answer }}
+                                        <label for="">Question Answer= </label> {{ $faq->answer }}
                                         @endif
                                     </p>
                                     <p>
@@ -89,7 +94,7 @@
                                             @if (auth()->check() && auth()->user()->is_admin)
                                                 <input type="text" name="updatedFAQs[{{ $faq->id }}][category]" value="{{ $faq->category }}" id="category_{{ $faq->id }}">
                                             @else
-                                                {{ $faq->category }}
+                                            <label for="">Category= </label> {{ $faq->category }}
                                             @endif
                                         </i>
                                     </p>

@@ -4,7 +4,9 @@ Backend Web Werktraject Erasmus Hogeschool
 Git Link= https://github.com/doganhasko/BackendWeb
 
 To Start the Project=
-1) Start XAMPP MySQL
+1) npm install
+2) composer install
+3) Start XAMPP MySQL
 2) npm run dev
 3) php artisan serve
 
