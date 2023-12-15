@@ -57,6 +57,7 @@ Route::get('/adminpage', function () {
 // FAQ Routes
 Route::get('/faq', 'FaqController@index');
 Route::get('faq', [FaqController::class, 'index'])->name('faq.index');
+Route::post('/faq/update-faqs', [FaqController::class, 'updateFAQs'])->name('faq.update-faqs');
 
 // ContactForm Routes
 Route::get('/contact', [ContactController::class,'showContactForm'])->name('contact.show');
@@ -70,6 +71,7 @@ Route::put('user/{name}/update', [UserController::class, 'update'])->name('users
 // Comments Routes
 Route::post('/posts/{post}/comments', [CommentsController::class, 'store'])->name('comments.store');
 
+//Admins editing
 Route::middleware(['auth', 'editadmins'])->group(function () {
     Route::get('/editadmins', [EdotAdminsController::class, 'index'])->name('editadmins');
     Route::post('/editadmins/save-changes', [EdotAdminsController::class, 'saveChanges'])->name('editadmins.saveChanges');

@@ -55,16 +55,19 @@ class PostController extends Controller
 
     public function edit($id){
         $post= Post::findOrFail($id);
-        if($post->user_id != Auth::user()->id && !Auth::user()->is_admin){
+        // Check if the user is the post owner or an admin
+        if (Auth::user()->is_admin != 1 && $post->user_id != Auth::user()->id) {
             abort(403);
         }
+        
         return view('posts.edit',compact('post'));
     }
 
     public function update($id, Request $request){
         $post= Post::findOrFail($id);
-        if($post->user_id != Auth::user()->id){
-            aboort(403);
+        // Check if the user is the post owner or an admin
+        if (Auth::user()->is_admin != 1 && $post->user_id != Auth::user()->id) {
+            abort(403);
         }
 
         $validated = $request->validate([
@@ -80,10 +83,11 @@ class PostController extends Controller
     }
 
     public function destroy($id){
-
-        if(!Auth::user()->is_admin){
-            abort(403,'Only Admins Can Delete Posts');
+        $post = Post::findOrFail($id);
+        if ($post->user_id != Auth::user()->id && Auth::user()->is_admin != 1) {
+            abort(403);
         }
+        
 
         $post= Post::findOrFail($id);
         $likes= Like::where('post_id','=', $post->id)->delete();

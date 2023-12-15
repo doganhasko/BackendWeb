@@ -18,7 +18,7 @@
                     @endif                    
 
                     @auth
-                    @if($user->name==Auth::user()->name)
+                    @if($user->name==Auth::user()->name || Auth::user()->is_admin==1) 
                         <a href="{{ route('users.edit', ['name' => $user->name]) }}" class="btn btn-primary">Edit Profile</a>
                     @endif
                     <br>

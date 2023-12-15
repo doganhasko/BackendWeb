@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h2>User Management</h2>
+        <h2 style="background-color: lightblue; padding: 10px;">ADMIN Management. You can change status of Admin here.</h2>
 
         <form method="post" action="{{ route('editadmins.saveChanges') }}">
             @csrf
