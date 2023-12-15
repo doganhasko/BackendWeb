@@ -20,23 +20,23 @@ use AuthenticatesUsers;
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request)
+    public function login(Request $request) 
     {
-      $this->validateLogin($request);
-  
+    
       if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-        
-        // Store email and hashed password in session
-        $request->session()->put([
-            'email' => $request->email,
-            'password' => bcrypt($request->password) 
-        ]);
-  
-        return $this->sendLoginResponse($request);
-  
+    
+        $user = Auth::user();
+    
+        if ($user->is_admin == 1) {
+          return redirect('/editadmins');
+        } else {
+          return $this->sendLoginResponse($request);
+        }
+    
       }
-  
+    
       return $this->sendFailedLoginResponse($request);
+    
     }
   
     public function logout(Request $request)

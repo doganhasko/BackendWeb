@@ -1,4 +1,4 @@
-@extends('layouts.app') // Assuming you have a layout
+@extends('layouts.app') 
 
 @section('content')
 <div class="container">
@@ -24,3 +24,5 @@
     </div>
 </div>
 @endsection
+
+@include('partials.footer-products')

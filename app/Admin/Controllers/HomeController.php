@@ -15,22 +15,18 @@ class HomeController extends Controller
     {
         return $content
             ->css_file(Admin::asset("open-admin/css/pages/dashboard.css"))
-            ->title('Dashboard')
-            ->description('Description...')
-            ->row(Dashboard::title())
-            ->row(function (Row $row) {
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::environment());
-                });
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::extensions());
-                });
-
-                $row->column(4, function (Column $column) {
-                    $column->append(Dashboard::dependencies());
-                });
-            });
+            ->title('
+                <div style="background-color: lightcoral; padding: 10px;">
+                    <span style="font-size: 20px; font-weight: bold; color: white;">
+                        THIS IS ADMIN DASHBOARD. I am using OpenAdmin for my admin functionalities. And I configured it as I wanted.<br>If you want CRUD operations for Users, Admins, FAQs, Contacts then you can use the sidebar on the left. <br><br> Here is the button to go to CoffeeShop project= 
+                    </span>
+                    <a href="' . url('/') . '" class="btn btn-primary" style="margin-left: 10px; font-size: 40px;">Go to Project Homepage</a>
+                </div>
+            ')
+            ->row(Dashboard::title());
     }
 }
+
+
+
+

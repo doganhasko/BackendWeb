@@ -48,13 +48,17 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mx-auto">
                                 <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="/">Reviews</a></li>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="about">About</a></li>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="products">Products</a></li>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="store">Store</a></li>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="faq">Frequently Asked Questions</a></li>
-                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="contact">Contact to Admin</a></li>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{{ route('about') }}">About</a></li>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{{ route('products') }}">Products</a></li>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{{ route('store') }}">Store</a></li>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{{ route('faq.index') }}">Frequently Asked Questions</a></li>
+                                <li class="nav-item px-lg-4"><a class="nav-link text-uppercase" href="{{ route('contact.show') }}">Contact to Admin</a></li>
+
             
                             </ul>
+                            @auth
+                            <a class="navbar-brand" href="{{route('posts.create')}}"> Share Experience</a>
+                            @endauth
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <!-- Left Side Of Navbar -->
                                 <ul class="navbar-nav me-auto">
@@ -83,6 +87,7 @@
                                             </a>
             
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('profile', ['name' => Auth::user()->name]) }}">My Profile</a>                                                
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                                    onclick="event.preventDefault();
                                                                  document.getElementById('logout-form').submit();">
@@ -100,9 +105,7 @@
                         </div>
                     </div>
                 </nav>
-                @auth
-                <a class="navbar-brand" href="{{route('posts.create')}}"> Share Experience</a>
-                @endauth
+
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -116,7 +119,7 @@
             @yield('content')
         </main>
     </div>
-</body>
+
 
 <footer class="footer text-faded text-center py-5">
     <div class="container"><p class="m-0 small">Copyright &copy; DOGAN HASKO 2023</p></div>
@@ -125,4 +128,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
 <script src="{{ asset('/assets/js/scripts.js') }}"></script>
+</body>
 </html>

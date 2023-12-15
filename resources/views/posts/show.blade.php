@@ -73,3 +73,5 @@
     
 </body>
 @endsection
+
+@include('partials.footer-products')

@@ -61,7 +61,7 @@
 @endsection
 
 
-
+@include('partials.footer-products')
 
 
 

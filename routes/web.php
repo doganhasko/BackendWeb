@@ -10,7 +10,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-
+use App\Http\Controllers\EdotAdminsController;
 
 
 /*
@@ -37,16 +37,22 @@ Route::post('/register', [RegisterController::class, 'create'])->name('register.
 Route::get('/home', [App\Http\Controllers\PostController::class, 'index'])->name('home');
 Route::get('/about', function () {
     return view('about');
-});
+})->name('about');
 Route::get('/products', function () {
     return view('products');
-});
+})->name('products');
+
 Route::get('/store', function () {
     return view('store');
-});
+})->name('store');
+
 Route::get('/faq', function () {
     return view('faq');
 });
+
+Route::get('/adminpage', function () {
+    return view('adminpage');
+})->name('adminpage');
 
 // FAQ Routes
 Route::get('/faq', 'FaqController@index');
@@ -64,5 +70,9 @@ Route::put('user/{name}/update', [UserController::class, 'update'])->name('users
 // Comments Routes
 Route::post('/posts/{post}/comments', [CommentsController::class, 'store'])->name('comments.store');
 
+Route::middleware(['auth', 'editadmins'])->group(function () {
+    Route::get('/editadmins', [EdotAdminsController::class, 'index'])->name('editadmins');
+    Route::post('/editadmins/save-changes', [EdotAdminsController::class, 'saveChanges'])->name('editadmins.saveChanges');
+});
 
 Auth::routes();

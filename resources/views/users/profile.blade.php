@@ -11,7 +11,7 @@
 
 
                     @if ($user->avatar)
-                        <img src="/avatars/{{ $user->avatar }}" style="width: 80px; margin-top: 10px;" alt="User Avatar">
+                        <img src="/avatars/{{ $user->avatar }}" style="width: 280px; margin-top: 10px;" alt="User Avatar">
                     @else
                         <!-- Display a default avatar or a placeholder image if the user doesn't have an avatar -->
                         <img src="/avatars/noavatar.png" style="width: 80px; margin-top: 10px;" alt="Default Avatar">
@@ -48,4 +48,4 @@
 @endsection
 
 
-
+@include('partials.footer-products')
