@@ -7,8 +7,10 @@ To Start the Project=
 1) npm install
 2) composer install
 3) Start XAMPP MySQL
-2) npm run dev
-3) php artisan serve
+4) npm run dev
+5) php artisan serve
+
+project is running on= http://127.0.0.1:8000/
 
 PROJECT EXPLANATION
 ABOUT PROJECT
