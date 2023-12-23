@@ -15,10 +15,18 @@ class PostController extends Controller
     }
 
 
-    public function index(){
-        $posts= Post::latest()->get();
+    public function index(Request $request)
+    {
+        $query = $request->input('query');
+        
+        // Use the where clause to filter posts based on the title
+        $posts = Post::latest()->when($query, function ($queryBuilder) use ($query) {
+            return $queryBuilder->where('title', 'like', "%$query%");
+        })->get();
+    
         return view('posts.index', compact('posts'));
     }
+    
 
     public function show($id) {
         $post=Post::findOrFail($id);

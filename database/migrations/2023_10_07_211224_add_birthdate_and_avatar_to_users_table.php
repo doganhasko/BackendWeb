@@ -9,8 +9,8 @@ class AddBirthdateAndAvatarToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->date('birthdate')->nullable();
-            $table->string('avatar')->nullable();
+           
+            
 
 
         });
@@ -19,8 +19,8 @@ class AddBirthdateAndAvatarToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('birthdate');
-            $table->dropColumn('avatar');
+           
+            
 
         });
     }

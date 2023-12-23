@@ -22,6 +22,8 @@ return new class extends Migration
             $table->date('birthdate')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->string('aboutme')->nullable();
+            $table->string('address')->nullable();
         });
     }
 

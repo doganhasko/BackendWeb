@@ -1,6 +1,6 @@
 @extends('layouts.app')
 <body style="background-image: url('{{ asset('storage/' . $post->postphoto) }}'); background-size: cover; background-position: center;">
-
+    
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
